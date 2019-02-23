@@ -44,22 +44,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
     }
-
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        
-    }
-    
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
-    }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
-    }
     
     @IBAction func onNewDrawing(_ sender: Any) {self.locationManager.stopUpdatingLocation()}
     struct dataEntry {
@@ -83,7 +67,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let h = locationManager.location?.coordinate
             let geometry = SCNPlane.init(width: 0.099, height: 0.214)
             
-            //add the custom textures
             var texture = SCNMaterial()
             var image = UIImage(named: "art.scnassets/placeholder.jpg")
             
@@ -110,18 +93,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                     frame.eulerAngles.x = Float(s[2] as! Double)
                     frame.eulerAngles.y = Float(s[0] as! Double)
                     frame.eulerAngles.z = Float(s[1] as! Double)
-                    /*frame.rotation.x = Float(s[0] as! Double)
-                     frame.rotation.y = Float(s[1] as! Double)
-                     frame.rotation.z = Float(s[2] as! Double)*/
                     
                     print("\n")
                     print(longDistance)
                     print(latDistance)
                     print(altDistance)
                     print("\n")
-                    /*frame.rotation.x <-- calc this shit right here along with y and z*/
-                    //idk how to calc this, we will see
-                    self.globalScene.rootNode.addChildNode(frame)
+                self.globalScene.rootNode.addChildNode(frame)
                 }
             }
         }
@@ -156,4 +134,5 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             locationManager.startUpdatingLocation()
         }
     }
+    
 }

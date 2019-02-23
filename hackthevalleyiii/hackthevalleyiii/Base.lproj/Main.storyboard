@@ -46,6 +46,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="669.60000000000002" y="26.53673163418291"/>
         </scene>
         <!--View Controller2-->
         <scene sceneID="zhd-wB-tMd">
@@ -55,11 +56,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9x-gI-lou">
-                                <rect key="frame" x="100" y="557" width="48" height="30"/>
-                                <state key="normal" title="Cancel"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gPW-A4-aQm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JGV-Nn-ytP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NIi-22-9v5">
+                                <rect key="frame" x="0.0" y="486" width="375" height="181"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="181" id="epx-sT-yTC"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGE-uv-EBs">
+                                <rect key="frame" x="165.5" y="502" width="44" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
+                                <state key="normal" title="Reset"/>
                                 <connections>
-                                    <segue destination="BV1-FR-VrT" kind="show" id="V3c-zi-bFO"/>
+                                    <action selector="onResetImage:" destination="7A3-W8-jS5" eventType="touchUpInside" id="Tqr-it-M8w"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDA-r6-hwq">
@@ -71,20 +86,13 @@
                                     <segue destination="BV1-FR-VrT" kind="show" id="fLL-AA-dGU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGE-uv-EBs">
-                                <rect key="frame" x="165.5" y="502" width="44" height="30"/>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
-                                <state key="normal" title="Reset"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9x-gI-lou">
+                                <rect key="frame" x="100" y="557" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
                                 <connections>
-                                    <action selector="onResetImage:" destination="7A3-W8-jS5" eventType="touchUpInside" id="Tqr-it-M8w"/>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="V3c-zi-bFO"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gPW-A4-aQm">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JGV-Nn-ytP">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMo-um-ave">
                                 <rect key="frame" x="162.5" y="597" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.1254913211" green="0.12548813219999999" blue="0.12549027800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -110,8 +118,11 @@
                             <constraint firstItem="YGK-zw-0mP" firstAttribute="bottom" secondItem="DDA-r6-hwq" secondAttribute="bottom" constant="80" id="3m6-9v-xfl"/>
                             <constraint firstItem="YGK-zw-0mP" firstAttribute="trailing" secondItem="JGV-Nn-ytP" secondAttribute="trailing" id="HqD-I7-jXs"/>
                             <constraint firstItem="xGE-uv-EBs" firstAttribute="centerX" secondItem="L5r-LZ-IbV" secondAttribute="centerX" id="NFl-dn-Rqn"/>
+                            <constraint firstItem="NIi-22-9v5" firstAttribute="trailing" secondItem="YGK-zw-0mP" secondAttribute="trailing" id="QiQ-of-hwL"/>
+                            <constraint firstItem="NIi-22-9v5" firstAttribute="bottom" secondItem="YGK-zw-0mP" secondAttribute="bottom" id="RFB-yI-ziv"/>
                             <constraint firstAttribute="bottomMargin" secondItem="xGE-uv-EBs" secondAttribute="bottom" constant="135" id="VdM-Bm-YXI"/>
                             <constraint firstItem="gPW-A4-aQm" firstAttribute="trailing" secondItem="YGK-zw-0mP" secondAttribute="trailing" id="WBV-Wx-uEf"/>
+                            <constraint firstItem="NIi-22-9v5" firstAttribute="leading" secondItem="YGK-zw-0mP" secondAttribute="leading" id="YYU-29-CIP"/>
                             <constraint firstItem="JGV-Nn-ytP" firstAttribute="leading" secondItem="YGK-zw-0mP" secondAttribute="leading" id="bW4-sD-btN"/>
                             <constraint firstItem="gPW-A4-aQm" firstAttribute="leading" secondItem="YGK-zw-0mP" secondAttribute="leading" id="hYZ-8z-ceN"/>
                             <constraint firstItem="YGK-zw-0mP" firstAttribute="bottom" secondItem="mMo-um-ave" secondAttribute="bottom" constant="20" id="iPG-n9-jg8"/>
@@ -123,8 +134,12 @@
                         <viewLayoutGuide key="safeArea" id="YGK-zw-0mP"/>
                     </view>
                     <connections>
+                        <outlet property="buttonBar" destination="NIi-22-9v5" id="clV-ra-yNF"/>
+                        <outlet property="cancelButton" destination="w9x-gI-lou" id="fJD-hc-vGV"/>
                         <outlet property="colourButton" destination="mMo-um-ave" id="Awi-tJ-ZJN"/>
+                        <outlet property="doneButton" destination="DDA-r6-hwq" id="Smy-L0-jbm"/>
                         <outlet property="mainImageView" destination="JGV-Nn-ytP" id="ykJ-a5-s5g"/>
+                        <outlet property="resetButton" destination="xGE-uv-EBs" id="2hH-fd-8Yu"/>
                         <outlet property="tempImageView" destination="gPW-A4-aQm" id="m6z-sR-ImL"/>
                     </connections>
                 </viewController>

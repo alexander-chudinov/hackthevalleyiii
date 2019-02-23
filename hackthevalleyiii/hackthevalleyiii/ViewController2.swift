@@ -31,13 +31,27 @@ class ViewController2: UIViewController {
         super.viewDidLoad()
         startQueuedUpdates()
         startLocationTracking()
-        // Do any additional setup after loading the view.
     }
+    
+    
+    
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var colourButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var buttonBar: UIView!
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {
             return
         }
+        //disable the buttons
+        doneButton.isHidden = true
+        resetButton.isHidden = true
+        cancelButton.isHidden = true
+        colourButton.isHidden = true
+        buttonBar.isHidden = true
         swiped = false
         lastPoint = touch.location(in: view)
     }
@@ -78,11 +92,9 @@ class ViewController2: UIViewController {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !swiped {
-            // draw a single point
             drawLine(from: lastPoint, to: lastPoint)
         }
         
-        // Merge tempImageView into mainImageView
         UIGraphicsBeginImageContext(mainImageView.frame.size)
         mainImageView.image?.draw(in: view.bounds, blendMode: .normal, alpha: 1.0)
         tempImageView?.image?.draw(in: view.bounds, blendMode: .normal, alpha: opacity)
@@ -90,6 +102,11 @@ class ViewController2: UIViewController {
         UIGraphicsEndImageContext()
         
         tempImageView.image = nil
+        doneButton.isHidden = false
+        resetButton.isHidden = false
+        cancelButton.isHidden = false
+        colourButton.isHidden = false
+        buttonBar.isHidden = false
     }
     
     @IBAction func onDrawingComplete(_ sender: Any) {
@@ -132,20 +149,19 @@ class ViewController2: UIViewController {
             self.motion.showsDeviceMovementDisplay = true
             self.motion.startDeviceMotionUpdates(using: .xMagneticNorthZVertical,
                                                  to: self.queue, withHandler: { (data, error) in
-                                                    // Make sure the data is valid before accessing it.
+                                                    
                                                     if let validData = data{
                                                        
                                                             self.sensorData[0] = validData.attitude.roll
                                                             self.sensorData[1] = validData.attitude.pitch
                                                             self.sensorData[2] = validData.attitude.yaw
                                                         
-                                                        // Get the altitude relative to the magnetic north reference frame.
                                                     }
             })
         }
     }
     var i = 0
-    @IBOutlet weak var colourButton: UIButton!
+    
     @IBAction func onChangeColour(_ sender: Any) {
         var colours = [UIColor.blue,UIColor.red,UIColor.yellow,UIColor.green,UIColor.black]
         self.color = colours[i]
