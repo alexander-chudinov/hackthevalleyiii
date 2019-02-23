@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import FirebaseStorage
+import FirebaseDatabase
+import CoreMotion
+import CoreLocation
 
 class ViewController2: UIViewController {
     
@@ -17,10 +21,16 @@ class ViewController2: UIViewController {
     var brushWidth: CGFloat = 10.0
     var opacity: CGFloat = 1.0
     var swiped = false
-
+    
+    let motion = CMMotionManager()
+    let queue = OperationQueue()
+    var sensorData = [0.0,0.0,0.0]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        startQueuedUpdates()
+        startLocationTracking()
         // Do any additional setup after loading the view.
     }
     
@@ -83,10 +93,53 @@ class ViewController2: UIViewController {
     }
     
     @IBAction func onDrawingComplete(_ sender: Any) {
-        print("f")
-        //turn the drawing into a png or smtn and send it to firebase
+        self.locationManager.stopUpdatingLocation()
+        self.isNeeded = false
+        
+        let local_uuid = UUID().uuidString
+        let image = mainImageView.image
+
+        let storageRef = FirebaseStorage.StorageReference().child("user_content/"+local_uuid+".png")
+        let databaseRef = FirebaseDatabase.DatabaseReference().child("user_content").child(local_uuid)
+        databaseRef.setValue(["test":"yeet"])
+        storageRef.putData((image?.pngData())!)
+        databaseRef.setValue(["sensorData":sensorData])
+        databaseRef.child("location").setValue(["latitude":locationManager.location?.coordinate.latitude])
     }
+    
     @IBAction func onResetImage(_ sender: Any) {
         mainImageView.image = nil
+    }
+    
+    let locationManager = CLLocationManager()
+    func startLocationTracking(){
+        locationManager.delegate = self as? CLLocationManagerDelegate
+        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            locationManager.requestAlwaysAuthorization()
+        } else if CLLocationManager.authorizationStatus() == .authorizedAlways {
+            locationManager.startUpdatingLocation()
+        }
+        
+    }
+    var isNeeded = true
+    func startQueuedUpdates() {
+        if motion.isDeviceMotionAvailable {
+            self.motion.deviceMotionUpdateInterval = 1.0 / 60.0
+            self.motion.showsDeviceMovementDisplay = true
+            self.motion.startDeviceMotionUpdates(using: .xMagneticNorthZVertical,
+                                                 to: self.queue, withHandler: { (data, error) in
+                                                    // Make sure the data is valid before accessing it.
+                                                    if let validData = data{
+                                                        if self.isNeeded==true{
+                                                            self.sensorData[0] = validData.attitude.roll
+                                                            self.sensorData[1] = validData.attitude.pitch
+                                                            self.sensorData[2] = validData.attitude.yaw
+                                                        }
+                                                        // Get the altitude relative to the magnetic north reference frame.
+                                                    }
+            })
+        }
     }
 }

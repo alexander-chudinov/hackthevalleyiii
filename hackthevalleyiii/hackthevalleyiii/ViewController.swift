@@ -10,6 +10,8 @@ import UIKit
 import SceneKit
 import ARKit
 import CoreMotion
+import Firebase
+import FirebaseStorage
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
@@ -21,11 +23,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         //sceneView.showsStatistics = true
         //let scene = SCNScene(named: "art.scnassets/ship.scn")!
         //sceneView.scene = scene
-        let mM = CMMotionManager()
-        mM.startAccelerometerUpdates()
-        if let aD = mM.accelerometerData{
-            print(aD)
-        }
+        CMMotionManager().startAccelerometerUpdates(to: OperationQueue.current!, withHandler: { data, error in
+            guard error == nil else { return }
+            guard let accelerometerData = data else { return }
+            print(accelerometerData.acceleration)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +58,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
     }
     
-    @IBAction func onNewDrawing(_ sender: Any) {
-        print("E")
-    }
+    @IBAction func onNewDrawing(_ sender: Any) {}
+    
+    
 }

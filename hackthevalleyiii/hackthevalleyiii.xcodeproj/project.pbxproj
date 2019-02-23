@@ -14,6 +14,7 @@
 		415E842F2220F5CA00D2E9E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 415E842E2220F5CA00D2E9E9 /* Assets.xcassets */; };
 		415E84322220F5CA00D2E9E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 415E84302220F5CA00D2E9E9 /* LaunchScreen.storyboard */; };
 		41CED83322211A62005DB790 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CED83222211A62005DB790 /* ViewController2.swift */; };
+		41F8F1952221243F00FD25DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41F8F1942221243F00FD25DB /* GoogleService-Info.plist */; };
 		D18A85DF5CA993D553C2AA91 /* Pods_hackthevalleyiii.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0DBD9A85ACF01BB5F1952EC /* Pods_hackthevalleyiii.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		415E84312220F5CA00D2E9E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		415E84332220F5CA00D2E9E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41CED83222211A62005DB790 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		41F8F1942221243F00FD25DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8D7CD49C608EE9F9E5E78485 /* Pods-hackthevalleyiii.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackthevalleyiii.release.xcconfig"; path = "Pods/Target Support Files/Pods-hackthevalleyiii/Pods-hackthevalleyiii.release.xcconfig"; sourceTree = "<group>"; };
 		F0DBD9A85ACF01BB5F1952EC /* Pods_hackthevalleyiii.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hackthevalleyiii.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -73,6 +75,7 @@
 				415E842E2220F5CA00D2E9E9 /* Assets.xcassets */,
 				415E84302220F5CA00D2E9E9 /* LaunchScreen.storyboard */,
 				415E84332220F5CA00D2E9E9 /* Info.plist */,
+				41F8F1942221243F00FD25DB /* GoogleService-Info.plist */,
 			);
 			path = hackthevalleyiii;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 			files = (
 				415E84282220F5C800D2E9E9 /* art.scnassets in Resources */,
 				415E84322220F5CA00D2E9E9 /* LaunchScreen.storyboard in Resources */,
+				41F8F1952221243F00FD25DB /* GoogleService-Info.plist in Resources */,
 				415E842F2220F5CA00D2E9E9 /* Assets.xcassets in Resources */,
 				415E842D2220F5C800D2E9E9 /* Main.storyboard in Resources */,
 			);
