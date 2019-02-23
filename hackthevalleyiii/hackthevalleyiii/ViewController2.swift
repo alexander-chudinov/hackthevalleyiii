@@ -100,11 +100,15 @@ class ViewController2: UIViewController {
         let image = mainImageView.image
 
         let storageRef = FirebaseStorage.StorageReference().child("user_content/"+local_uuid+".png")
-        let databaseRef = FirebaseDatabase.DatabaseReference().child("user_content").child(local_uuid)
-        databaseRef.setValue(["test":"yeet"])
         storageRef.putData((image?.pngData())!)
-        databaseRef.setValue(["sensorData":sensorData])
-        databaseRef.child("location").setValue(["latitude":locationManager.location?.coordinate.latitude])
+        
+        var databaseRef: DatabaseReference!
+        databaseRef = Database.database().reference().child("user_content/\(local_uuid)")
+        databaseRef.child("sensorData").setValue(["roll":sensorData[0],
+                                                  "pitch":sensorData[1],
+                                                  "yaw":sensorData[2]])
+        databaseRef.child("location").setValue(["latitude":locationManager.location?.coordinate.latitude,
+                                                "longitude":locationManager.location?.coordinate.longitude])
     }
     
     @IBAction func onResetImage(_ sender: Any) {
@@ -121,8 +125,8 @@ class ViewController2: UIViewController {
         } else if CLLocationManager.authorizationStatus() == .authorizedAlways {
             locationManager.startUpdatingLocation()
         }
-        
     }
+    
     var isNeeded = true
     func startQueuedUpdates() {
         if motion.isDeviceMotionAvailable {
