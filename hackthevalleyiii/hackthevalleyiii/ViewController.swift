@@ -23,7 +23,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         //sceneView.showsStatistics = true
         //let scene = SCNScene(named: "art.scnassets/ship.scn")!
         //sceneView.scene = scene
-        generateScene()
+        //generateScene()
+        sceneTest()
         CMMotionManager().startAccelerometerUpdates(to: OperationQueue.current!, withHandler: { data, error in
             guard error == nil else { return }
             guard let accelerometerData = data else { return }
@@ -60,9 +61,32 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func onNewDrawing(_ sender: Any) {}
+    struct dataEntry {
+        var location : Dictionary<String, Any>
+        var sensorData : Array<Double>
+    }
+    
+    func sceneTest(){
+        for i in 0...10{
+            
+        }
+    }
     
     func generateScene(){
-        
+        var databaseRef: DatabaseReference!
+        databaseRef = Database.database().reference().child("user_content")
+        databaseRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let response = snapshot.value as? NSDictionary
+            let entryKeys = [response?.allKeys][0]
+            for i in 0...(entryKeys?.count)!-1 {
+                print(entryKeys?[i])
+                let entryValue = response!.object(forKey: entryKeys?[i] )as! NSDictionary
+                print(entryValue.object(forKey: "location")!)
+                print(entryValue.object(forKey: "sensorData")!)
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
 }
