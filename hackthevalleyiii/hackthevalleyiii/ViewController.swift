@@ -18,9 +18,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.delegate = self
-        sceneView.showsStatistics = true
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        sceneView.scene = scene
+        //sceneView.showsStatistics = true
+        //let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        //sceneView.scene = scene
         let mM = CMMotionManager()
         mM.startAccelerometerUpdates()
         if let aD = mM.accelerometerData{
@@ -32,6 +32,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewWillAppear(animated)
         let configuration = ARWorldTrackingConfiguration()
         sceneView.session.run(configuration)
+        //generate the scene (fetch all entries using firebase storage)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -53,5 +54,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
+    }
+    
+    @IBAction func onNewDrawing(_ sender: Any) {
+        print("E")
     }
 }
