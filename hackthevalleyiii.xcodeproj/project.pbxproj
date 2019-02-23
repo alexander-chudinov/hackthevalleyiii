@@ -13,9 +13,11 @@
 		415E842D2220F5C800D2E9E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 415E842B2220F5C800D2E9E9 /* Main.storyboard */; };
 		415E842F2220F5CA00D2E9E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 415E842E2220F5CA00D2E9E9 /* Assets.xcassets */; };
 		415E84322220F5CA00D2E9E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 415E84302220F5CA00D2E9E9 /* LaunchScreen.storyboard */; };
+		D18A85DF5CA993D553C2AA91 /* Pods_hackthevalleyiii.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0DBD9A85ACF01BB5F1952EC /* Pods_hackthevalleyiii.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22EEA250A5A8D78BD16A8093 /* Pods-hackthevalleyiii.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackthevalleyiii.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hackthevalleyiii/Pods-hackthevalleyiii.debug.xcconfig"; sourceTree = "<group>"; };
 		415E84222220F5C800D2E9E9 /* hackthevalleyiii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hackthevalleyiii.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		415E84252220F5C800D2E9E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		415E84272220F5C800D2E9E9 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		415E842E2220F5CA00D2E9E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		415E84312220F5CA00D2E9E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		415E84332220F5CA00D2E9E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D7CD49C608EE9F9E5E78485 /* Pods-hackthevalleyiii.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackthevalleyiii.release.xcconfig"; path = "Pods/Target Support Files/Pods-hackthevalleyiii/Pods-hackthevalleyiii.release.xcconfig"; sourceTree = "<group>"; };
+		F0DBD9A85ACF01BB5F1952EC /* Pods_hackthevalleyiii.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hackthevalleyiii.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D18A85DF5CA993D553C2AA91 /* Pods_hackthevalleyiii.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				415E84242220F5C800D2E9E9 /* hackthevalleyiii */,
 				415E84232220F5C800D2E9E9 /* Products */,
+				C16AD0FAC7B29576D63D5391 /* Pods */,
+				87EC3ED3636E40FDCCCC7772 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,23 @@
 			path = hackthevalleyiii;
 			sourceTree = "<group>";
 		};
+		87EC3ED3636E40FDCCCC7772 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F0DBD9A85ACF01BB5F1952EC /* Pods_hackthevalleyiii.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C16AD0FAC7B29576D63D5391 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				22EEA250A5A8D78BD16A8093 /* Pods-hackthevalleyiii.debug.xcconfig */,
+				8D7CD49C608EE9F9E5E78485 /* Pods-hackthevalleyiii.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 415E84362220F5CA00D2E9E9 /* Build configuration list for PBXNativeTarget "hackthevalleyiii" */;
 			buildPhases = (
+				5BCAF67177E6042F64D0D3E3 /* [CP] Check Pods Manifest.lock */,
 				415E841E2220F5C800D2E9E9 /* Sources */,
 				415E841F2220F5C800D2E9E9 /* Frameworks */,
 				415E84202220F5C800D2E9E9 /* Resources */,
+				BA868DE74C112204C5DF416E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,6 +159,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5BCAF67177E6042F64D0D3E3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hackthevalleyiii-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA868DE74C112204C5DF416E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-hackthevalleyiii/Pods-hackthevalleyiii-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hackthevalleyiii/Pods-hackthevalleyiii-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		415E841E2220F5C800D2E9E9 /* Sources */ = {
@@ -284,6 +355,7 @@
 		};
 		415E84372220F5CA00D2E9E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22EEA250A5A8D78BD16A8093 /* Pods-hackthevalleyiii.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -302,6 +374,7 @@
 		};
 		415E84382220F5CA00D2E9E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D7CD49C608EE9F9E5E78485 /* Pods-hackthevalleyiii.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

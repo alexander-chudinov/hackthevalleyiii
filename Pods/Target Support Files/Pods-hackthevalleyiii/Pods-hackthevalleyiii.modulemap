@@ -1,0 +1,6 @@
+framework module Pods_hackthevalleyiii {
+  umbrella header "Pods-hackthevalleyiii-umbrella.h"
+
+  export *
+  module * { export * }
+}
