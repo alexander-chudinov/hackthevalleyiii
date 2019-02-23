@@ -93,8 +93,6 @@ class ViewController2: UIViewController {
     }
     
     @IBAction func onDrawingComplete(_ sender: Any) {
-        self.locationManager.stopUpdatingLocation()
-        self.isNeeded = false
         
         let local_uuid = UUID().uuidString
         let image = mainImageView.image
@@ -108,7 +106,8 @@ class ViewController2: UIViewController {
                                                   "pitch":sensorData[1],
                                                   "yaw":sensorData[2]])
         databaseRef.child("location").setValue(["latitude":locationManager.location?.coordinate.latitude,
-                                                "longitude":locationManager.location?.coordinate.longitude])
+                                                "longitude":locationManager.location?.coordinate.longitude,
+                                                "altitude":locationManager.location?.altitude])
     }
     
     @IBAction func onResetImage(_ sender: Any) {
@@ -127,7 +126,6 @@ class ViewController2: UIViewController {
         }
     }
     
-    var isNeeded = true
     func startQueuedUpdates() {
         if motion.isDeviceMotionAvailable {
             self.motion.deviceMotionUpdateInterval = 1.0 / 60.0
@@ -136,14 +134,27 @@ class ViewController2: UIViewController {
                                                  to: self.queue, withHandler: { (data, error) in
                                                     // Make sure the data is valid before accessing it.
                                                     if let validData = data{
-                                                        if self.isNeeded==true{
+                                                       
                                                             self.sensorData[0] = validData.attitude.roll
                                                             self.sensorData[1] = validData.attitude.pitch
                                                             self.sensorData[2] = validData.attitude.yaw
-                                                        }
+                                                        
                                                         // Get the altitude relative to the magnetic north reference frame.
                                                     }
             })
         }
     }
+    var i = 0
+    @IBOutlet weak var colourButton: UIButton!
+    @IBAction func onChangeColour(_ sender: Any) {
+        var colours = [UIColor.blue,UIColor.red,UIColor.yellow,UIColor.green,UIColor.black]
+        self.color = colours[i]
+        self.colourButton.backgroundColor = colours[i]
+        i+=1
+        if i>=colours.count {
+            i=0
+        }
+       
+    }
+    
 }

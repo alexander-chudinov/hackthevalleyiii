@@ -85,12 +85,28 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JGV-Nn-ytP">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMo-um-ave">
+                                <rect key="frame" x="162.5" y="597" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.1254913211" green="0.12548813219999999" blue="0.12549027800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="IbI-7T-njJ"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ZlN-yG-ypV"/>
+                                    <constraint firstAttribute="height" constant="50" id="aIW-KO-bLV"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.1254913211" green="0.12548813219999999" blue="0.12549027800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="onChangeColour:" destination="7A3-W8-jS5" eventType="touchUpInside" id="IDM-Mn-5JS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="JGV-Nn-ytP" secondAttribute="bottom" id="0O6-dg-ge2"/>
                             <constraint firstItem="YGK-zw-0mP" firstAttribute="bottom" secondItem="w9x-gI-lou" secondAttribute="bottom" constant="80" id="36V-1M-chf"/>
                             <constraint firstItem="YGK-zw-0mP" firstAttribute="trailing" secondItem="DDA-r6-hwq" secondAttribute="trailing" constant="100" id="3CN-RK-r7z"/>
+                            <constraint firstItem="mMo-um-ave" firstAttribute="centerX" secondItem="L5r-LZ-IbV" secondAttribute="centerX" id="3Fa-F1-TVH"/>
                             <constraint firstItem="YGK-zw-0mP" firstAttribute="bottom" secondItem="DDA-r6-hwq" secondAttribute="bottom" constant="80" id="3m6-9v-xfl"/>
                             <constraint firstItem="YGK-zw-0mP" firstAttribute="trailing" secondItem="JGV-Nn-ytP" secondAttribute="trailing" id="HqD-I7-jXs"/>
                             <constraint firstItem="xGE-uv-EBs" firstAttribute="centerX" secondItem="L5r-LZ-IbV" secondAttribute="centerX" id="NFl-dn-Rqn"/>
@@ -98,6 +114,7 @@
                             <constraint firstItem="gPW-A4-aQm" firstAttribute="trailing" secondItem="YGK-zw-0mP" secondAttribute="trailing" id="WBV-Wx-uEf"/>
                             <constraint firstItem="JGV-Nn-ytP" firstAttribute="leading" secondItem="YGK-zw-0mP" secondAttribute="leading" id="bW4-sD-btN"/>
                             <constraint firstItem="gPW-A4-aQm" firstAttribute="leading" secondItem="YGK-zw-0mP" secondAttribute="leading" id="hYZ-8z-ceN"/>
+                            <constraint firstItem="YGK-zw-0mP" firstAttribute="bottom" secondItem="mMo-um-ave" secondAttribute="bottom" constant="20" id="iPG-n9-jg8"/>
                             <constraint firstItem="gPW-A4-aQm" firstAttribute="top" secondItem="L5r-LZ-IbV" secondAttribute="top" id="kmx-pO-vvq"/>
                             <constraint firstAttribute="bottom" secondItem="gPW-A4-aQm" secondAttribute="bottom" id="nYL-J2-n0Q"/>
                             <constraint firstItem="JGV-Nn-ytP" firstAttribute="top" secondItem="L5r-LZ-IbV" secondAttribute="top" id="phx-dT-myH"/>
@@ -106,6 +123,7 @@
                         <viewLayoutGuide key="safeArea" id="YGK-zw-0mP"/>
                     </view>
                     <connections>
+                        <outlet property="colourButton" destination="mMo-um-ave" id="Awi-tJ-ZJN"/>
                         <outlet property="mainImageView" destination="JGV-Nn-ytP" id="ykJ-a5-s5g"/>
                         <outlet property="tempImageView" destination="gPW-A4-aQm" id="m6z-sR-ImL"/>
                     </connections>
