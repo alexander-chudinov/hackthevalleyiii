@@ -1,2 +1,2 @@
-# hackthevalleyiii
+# gARffiti
 My hackthevalleyiii project
