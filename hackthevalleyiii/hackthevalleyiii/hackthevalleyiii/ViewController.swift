@@ -13,19 +13,21 @@ import CoreMotion
 import FirebaseDatabase
 import FirebaseStorage
 import CoreLocation
+import FirebaseAuth
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    @IBOutlet weak var uidLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.delegate = self
-        //sceneView.showsStatistics = true
-        //let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        //sceneView.scene = scene
+        Auth.auth().signInAnonymously() { (authResult, error) in
+            let user = authResult?.user
+            self.uidLabel.text = user?.uid
+        }
         generateScene()
-        //sceneTest()
         CMMotionManager().startAccelerometerUpdates(to: OperationQueue.current!, withHandler: { data, error in
             guard error == nil else { return }
             guard let accelerometerData = data else { return }
@@ -56,6 +58,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         var latitude = String.self
         var longitude = String.self
     }
+    
     func appendToScene(coords: Any?, sensorData: Any?, uuid: String){
         if((coords as? NSDictionary)?.object(forKey: "latitude") != nil){
             let p = [(coords as! NSDictionary).object(forKey: "latitude")!,
@@ -65,40 +68,39 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                     (sensorData as! NSDictionary).object(forKey: "roll")!,
                     (sensorData as! NSDictionary).object(forKey: "yaw")!]
             let h = locationManager.location?.coordinate
-            let geometry = SCNPlane.init(width: 0.099, height: 0.214)
+            let geometry = SCNPlane.init(width: 0.099*2, height: 0.214*2)
             
-            var texture = SCNMaterial()
+            let texture = SCNMaterial()
             var image = UIImage(named: "art.scnassets/placeholder.jpg")
             
             let storageRef = FirebaseStorage.StorageReference().child("user_content/\(uuid).png")
-            storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            storageRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
                 if let error = error {
                     print(error.localizedDescription)
+                    
                 } else {
                     image = UIImage(data: data!)
                     texture.diffuse.contents = image
                     geometry.materials = [texture]
                     geometry.firstMaterial?.isDoubleSided = true
                     geometry.material(named: "texture")?.isDoubleSided = true
-                    var frame = SCNNode(geometry: geometry)
+                    let frame = SCNNode(geometry: geometry)
                     
-                    let longDistance = (h?.longitude as! Double) - (p[1] as! Double)
-                    let latDistance = (h?.latitude as! Double) - (p[0] as! Double)
-                    let altDistance = (self.locationManager.location?.altitude as! Double) - (p[2] as! Double)
+                    let longDistance = ((h?.longitude)!) - (p[1] as! Double)
+                    let latDistance = ((h?.latitude)!) - (p[0] as! Double)
+                    let altDistance = (self.locationManager.location?.altitude)! - (p[2] as! Double)
+                    
+                    print(longDistance)
+                    print(latDistance)
+                    print(altDistance)
                     
                     frame.position.x = Float(longDistance)
                     frame.position.y = Float(latDistance)
                     frame.position.z = Float(altDistance)
                     
-                    frame.eulerAngles.x = Float(s[2] as! Double)
+                    frame.eulerAngles.x = Float(s[1] as! Double)
                     frame.eulerAngles.y = Float(s[0] as! Double)
-                    frame.eulerAngles.z = Float(s[1] as! Double)
-                    
-                    print("\n")
-                    print(longDistance)
-                    print(latDistance)
-                    print(altDistance)
-                    print("\n")
+                    frame.eulerAngles.z = Float(s[2] as! Double)
                 self.globalScene.rootNode.addChildNode(frame)
                 }
             }

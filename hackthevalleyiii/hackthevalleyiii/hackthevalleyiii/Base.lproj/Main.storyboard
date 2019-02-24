@@ -28,12 +28,21 @@
                                     <segue destination="7A3-W8-jS5" kind="show" id="7Fh-zH-4VT"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3L-dR-ukr">
+                                <rect key="frame" x="135.5" y="45" width="104" height="21"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="l3L-dR-ukr" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="25" id="0f8-yD-m6c"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
+                            <constraint firstItem="l3L-dR-ukr" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="Yya-49-Qib"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="wT8-zB-X37" secondAttribute="bottom" constant="50" id="cVL-J4-H9g"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
                             <constraint firstItem="wT8-zB-X37" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="w7M-dv-sk1"/>
@@ -42,6 +51,7 @@
                     </view>
                     <connections>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="uidLabel" destination="l3L-dR-ukr" id="yB8-gE-22l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -108,6 +118,13 @@
                                     <action selector="onChangeColour:" destination="7A3-W8-jS5" eventType="touchUpInside" id="IDM-Mn-5JS"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35F-I7-LvZ">
+                                <rect key="frame" x="135.5" y="45" width="104" height="21"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -116,7 +133,9 @@
                             <constraint firstItem="YGK-zw-0mP" firstAttribute="trailing" secondItem="DDA-r6-hwq" secondAttribute="trailing" constant="100" id="3CN-RK-r7z"/>
                             <constraint firstItem="mMo-um-ave" firstAttribute="centerX" secondItem="L5r-LZ-IbV" secondAttribute="centerX" id="3Fa-F1-TVH"/>
                             <constraint firstItem="YGK-zw-0mP" firstAttribute="bottom" secondItem="DDA-r6-hwq" secondAttribute="bottom" constant="80" id="3m6-9v-xfl"/>
+                            <constraint firstItem="35F-I7-LvZ" firstAttribute="top" secondItem="YGK-zw-0mP" secondAttribute="top" constant="25" id="8NN-C7-rX4"/>
                             <constraint firstItem="YGK-zw-0mP" firstAttribute="trailing" secondItem="JGV-Nn-ytP" secondAttribute="trailing" id="HqD-I7-jXs"/>
+                            <constraint firstItem="35F-I7-LvZ" firstAttribute="centerX" secondItem="L5r-LZ-IbV" secondAttribute="centerX" id="Iem-N1-r8g"/>
                             <constraint firstItem="xGE-uv-EBs" firstAttribute="centerX" secondItem="L5r-LZ-IbV" secondAttribute="centerX" id="NFl-dn-Rqn"/>
                             <constraint firstItem="NIi-22-9v5" firstAttribute="trailing" secondItem="YGK-zw-0mP" secondAttribute="trailing" id="QiQ-of-hwL"/>
                             <constraint firstItem="NIi-22-9v5" firstAttribute="bottom" secondItem="YGK-zw-0mP" secondAttribute="bottom" id="RFB-yI-ziv"/>
@@ -141,6 +160,7 @@
                         <outlet property="mainImageView" destination="JGV-Nn-ytP" id="ykJ-a5-s5g"/>
                         <outlet property="resetButton" destination="xGE-uv-EBs" id="2hH-fd-8Yu"/>
                         <outlet property="tempImageView" destination="gPW-A4-aQm" id="m6z-sR-ImL"/>
+                        <outlet property="uidLabel" destination="35F-I7-LvZ" id="OzA-I4-SiH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tqP-1w-8y5" userLabel="First Responder" sceneMemberID="firstResponder"/>

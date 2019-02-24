@@ -11,6 +11,7 @@ import FirebaseStorage
 import FirebaseDatabase
 import CoreMotion
 import CoreLocation
+import FirebaseAuth
 
 class ViewController2: UIViewController {
     
@@ -26,21 +27,26 @@ class ViewController2: UIViewController {
     let queue = OperationQueue()
     var sensorData = [0.0,0.0,0.0]
     
+    var uid = ""
+    
+    @IBOutlet weak var uidLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         startQueuedUpdates()
         startLocationTracking()
+        Auth.auth().signInAnonymously() { (authResult, error) in
+            let user = authResult?.user
+            self.uidLabel.text = user?.uid
+            self.uid = user!.uid
+        }
     }
-    
-    
     
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var colourButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var buttonBar: UIView!
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {
@@ -110,7 +116,6 @@ class ViewController2: UIViewController {
     }
     
     @IBAction func onDrawingComplete(_ sender: Any) {
-        
         let local_uuid = UUID().uuidString
         let image = mainImageView.image
 
@@ -119,12 +124,15 @@ class ViewController2: UIViewController {
         
         var databaseRef: DatabaseReference!
         databaseRef = Database.database().reference().child("user_content/\(local_uuid)")
-        databaseRef.child("sensorData").setValue(["roll":sensorData[0],
-                                                  "pitch":sensorData[1],
-                                                  "yaw":sensorData[2]])
-        databaseRef.child("location").setValue(["latitude":locationManager.location?.coordinate.latitude,
-                                                "longitude":locationManager.location?.coordinate.longitude,
-                                                "altitude":locationManager.location?.altitude])
+        databaseRef.child("sensorData").setValue(["roll":sensorData[0], "pitch":sensorData[1], "yaw":sensorData[2]])
+        databaseRef.child("location").setValue(["latitude":locationManager.location?.coordinate.latitude,"longitude":locationManager.location?.coordinate.longitude, "altitude":locationManager.location?.altitude])
+        databaseRef.child("uuid").setValue(uid)
+        Database.database().reference().child("leaderboard/\(uid)").observeSingleEvent(of: .value, with: { (snapshot) in
+            let response = snapshot.value as! Int
+            Database.database().reference().child("leaderboard/\(self.uid)").setValue(response+1)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
     @IBAction func onResetImage(_ sender: Any) {
@@ -147,19 +155,16 @@ class ViewController2: UIViewController {
         if motion.isDeviceMotionAvailable {
             self.motion.deviceMotionUpdateInterval = 1.0 / 60.0
             self.motion.showsDeviceMovementDisplay = true
-            self.motion.startDeviceMotionUpdates(using: .xMagneticNorthZVertical,
-                                                 to: self.queue, withHandler: { (data, error) in
-                                                    
-                                                    if let validData = data{
-                                                       
-                                                            self.sensorData[0] = validData.attitude.roll
-                                                            self.sensorData[1] = validData.attitude.pitch
-                                                            self.sensorData[2] = validData.attitude.yaw
-                                                        
-                                                    }
+            self.motion.startDeviceMotionUpdates(using: .xMagneticNorthZVertical, to: self.queue, withHandler: { (data, error) in
+                if let validData = data{
+                    self.sensorData[0] = validData.attitude.roll
+                    self.sensorData[1] = validData.attitude.pitch
+                    self.sensorData[2] = validData.attitude.yaw
+                }
             })
         }
     }
+    
     var i = 0
     
     @IBAction func onChangeColour(_ sender: Any) {
