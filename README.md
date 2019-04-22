@@ -1,1 +1,3 @@
-My solo submission for HTV III c:
+# Garffiti (HTV3 Solo Submission)
+Garffiti brings the power of AR content creation to the people. By prioritizing customer-generated content within an AR world, Garffiti helps people, both young and old, express themselves. The tools of creation within this app are minimalistic. Anyone can draw anything, anywhere they want (even in midair). The possibilities are endless for this product. It can be used in every sector. Some brief examples include : infrastructure signage or marking, tourism and even comedy. The app also ensures the privacy of its users. All users are anonymous and have the right to free speech.
+
